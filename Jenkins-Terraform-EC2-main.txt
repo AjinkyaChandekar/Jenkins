@@ -1,4 +1,4 @@
-#Is it working?
+#main.tf
 provider "aws" {
   region = var.aws_region
 }
