@@ -1,3 +1,4 @@
+#New line added here
 provider "aws" {
   region = var.aws_region
 }
