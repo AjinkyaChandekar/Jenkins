@@ -1,29 +1,14 @@
-variable "aws_region" {
-  description = "The AWS region to create things in."
-  default     = "us-east-1"
+provider "aws" {
+  region = var.aws_region
 }
 
-variable "key_name" {
-  description = " SSH keys to connect to ec2 instance"
-  default     =  "ajinkya-key"
-}
-
-variable "instance_type" {
-  description = "instance type for ec2"
-  default     =  "t2.micro"
-}
-
-variable "security_group" {
-  description = "Name of security group"
-  default     = "EC2-Jenkins"
-}
-
-variable "tag_name" {
-  description = "Tag Name of for Ec2 instance"
-  default     = "my-ec2-jenkins"
-}
-
-variable "ami_id" {
-  description = "AMI for Ubuntu Ec2 instance"
-  default     = "ami-0747bdcabd34c712a"
+# Create AWS ec2 instance
+resource "aws_instance" "myFirstInstance" {
+  ami           = var.ami_id
+  key_name = var.key_name
+  instance_type = var.instance_type
+  security_groups= [var.security_group]
+  tags= {
+    Name = var.tag_name
+  }
 }
